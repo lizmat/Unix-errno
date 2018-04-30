@@ -149,7 +149,7 @@ my class errno {
 module Unix::errno:ver<0.0.1>:auth<cpan:ELIZABETH> {
     our $errno is export = Proxy.new(
       FETCH => -> $ { errno },
-      STORE => -> $, \value { dd value; $ERRNO = value.Int; errno }
+      STORE => -> $, \value { $ERRNO = value.Int; errno }
     );
 }
 
