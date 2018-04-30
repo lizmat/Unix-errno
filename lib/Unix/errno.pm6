@@ -138,19 +138,41 @@ my constant @message =
 my constant CLIB = $*KERNEL.name eq 'darwin'
   ?? 'libSystem.B.dylib'
   !! 'libc.so.6';   # other variations may need to be added later
-my $ERRNO := cglobal(CLIB, "errno", int32);
+my int $last_set = 0;
+my int $last_seen_native
+  = my $ERRNO := cglobal(CLIB, "errno", int32);
 
 my class errno {
-    method Str(--> Str:D)     { @message[+$ERRNO] }
-    method gist(--> Str:D)    { my $n = +$ERRNO; "@message[$n] (errno = $n)" }
-    method Numeric(--> Int:D) { +$ERRNO }
+    method !index() {
+        my int $errno_now = $ERRNO;
+        $last_set = $last_seen_native = $errno_now
+          if $last_seen_native != $errno_now;
+        $last_set
+    }
+    method Str(--> Str:D)  { @message[self!index] }
+    method gist(--> Str:D) {
+        if self!index -> $index {
+            "@message[$index] (errno = $index)"
+        }
+        else {
+            ""
+        }
+    }
+    method Numeric(--> Int:D) { self!index }
 }
 
-module Unix::errno:ver<0.0.1>:auth<cpan:ELIZABETH> {
-    our $errno is export = Proxy.new(
-      FETCH => -> $ { errno },
-      STORE => -> $, \value { $ERRNO = value.Int; errno }
+module Unix::errno:ver<0.0.2>:auth<cpan:ELIZABETH> {
+    my $proxy := Proxy.new(
+      FETCH => -> $ { UNIT::errno },
+      STORE => -> $, $value { set_errno($value) }
     );
+
+    my sub errno() is export is raw { $proxy }
+    my sub set_errno(Int() $value) is export is raw {
+        $last_seen_native = $ERRNO;  # ignore any changes until now
+        $last_set = $value;
+        $proxy
+    }
 }
 
 =begin pod
@@ -161,12 +183,13 @@ Unix::errno - Provide transparent access to errno
 
 =head1 SYNOPSIS
 
-    use Unix::errno;  # exports $errno
+    use Unix::errno;  # exports errno, set_errno
 
-    open("file-that-does-not-exist");
-    say $errno;            # No such file or directory (errno = 2)
-    say "failed: $errno";  # failed: No such file or directory
-    say +$errno;           # 2
+    set_errno(2);
+
+    say errno;              # No such file or directory (errno = 2)
+    say "failed: {errno}";  # failed: No such file or directory
+    say +errno;             # 2
 
 =head1 DESCRIPTION
 
@@ -177,18 +200,11 @@ already.  For now, this issue is ignored.
 
 =head1 CAVEATS
 
-The first time after this module has been installed or each time a new
-version of Rakudo has been installed, the first time C<$errno> is stringified
-something happens that sets C<$errno> to 60.  This seems related to
-precompilation and/or lazy loading of the parts of the module.
-
-Until now, no way has been found to avoid this, other than it would cause
-a significant overhead.
-
 Since setting of any "extern" variables is not supported yet by C<NativeCall>,
-this module does not allow any direct access either.  This may change in the
-future, either by writing a specific errno setter in C, or by having
-C<NativeCall> do the right thing in the C<cglobal> function.
+the setting of C<errno> is faked.  If C<set_errno> is called, it will set
+the value only in a shadow copy.  That value will be returned As long as
+the underlying "real" errno doesn't change (at which point that value
+will be returned.
 
 =head1 AUTHOR
 
