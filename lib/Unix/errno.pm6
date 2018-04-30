@@ -141,9 +141,9 @@ my constant CLIB = $*KERNEL.name eq 'darwin'
 my $ERRNO := cglobal(CLIB, "errno", int32);
 
 my class errno {
-    method Str(--> Str:D)     {  @message[+$ERRNO]                   }
-    method gist(--> Str:D)    { "@message[+$ERRNO] (errno = $ERRNO)" }
-    method Numeric(--> Int:D) { +$ERRNO                              }
+    method Str(--> Str:D)     { @message[+$ERRNO] }
+    method gist(--> Str:D)    { my $n = +$ERRNO; "@message[$n] (errno = $n)" }
+    method Numeric(--> Int:D) { +$ERRNO }
 }
 
 module Unix::errno:ver<0.0.1>:auth<cpan:ELIZABETH> {
