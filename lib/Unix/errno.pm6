@@ -161,7 +161,7 @@ my class errno {
     method Numeric(--> Int:D) { self!index }
 }
 
-module Unix::errno:ver<0.0.2>:auth<cpan:ELIZABETH> {
+module Unix::errno:ver<0.0.3>:auth<cpan:ELIZABETH> {
     my $proxy := Proxy.new(
       FETCH => -> $ { UNIT::errno },
       STORE => -> $, $value { set_errno($value) }
@@ -195,7 +195,7 @@ Unix::errno - Provide transparent access to errno
 
 This module provides access to the C<errno> variable that is available on
 all Unix-like systems.  Please note that in a threaded environment such as
-Perl 6 is, the value of C<errno> is even more volatile than it has been
+Raku is, the value of C<errno> is even more volatile than it has been
 already.  For now, this issue is ignored.
 
 =head1 CAVEATS

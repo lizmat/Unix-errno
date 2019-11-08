@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/lizmat/Unix-errno.svg?branch=master)](https://travis-ci.org/lizmat/Unix-errno)
-
 NAME
 ====
 
@@ -19,7 +17,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-This module provides access to the `errno` variable that is available on all Unix-like systems. Please note that in a threaded environment such as Perl 6 is, the value of `errno` is even more volatile than it has been already. For now, this issue is ignored.
+This module provides access to the `errno` variable that is available on all Unix-like systems. Please note that in a threaded environment such as Raku is, the value of `errno` is even more volatile than it has been already. For now, this issue is ignored.
 
 CAVEATS
 =======
