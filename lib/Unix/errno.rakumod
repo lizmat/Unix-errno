@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 
 use NativeCall;
 
@@ -161,7 +161,7 @@ my class errno {
     method Numeric(--> Int:D) { self!index }
 }
 
-module Unix::errno:ver<0.0.3>:auth<cpan:ELIZABETH> {
+module Unix::errno:ver<0.0.4>:auth<zef:lizmat> {
     my $proxy := Proxy.new(
       FETCH => -> $ { UNIT::errno },
       STORE => -> $, $value { set_errno($value) }
@@ -208,14 +208,14 @@ will be returned.
 
 =head1 AUTHOR
 
-Elizabeth Mattijsen <liz@wenzperl.nl>
+Elizabeth Mattijsen <liz@raku.rocks>
 
 Source can be located at: https://github.com/lizmat/Unix-errno . Comments and
 Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018 Elizabeth Mattijsen
+Copyright 2018, 2021 Elizabeth Mattijsen
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 

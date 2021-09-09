@@ -2,6 +2,12 @@ Revision history for Unix-errno
 
 {{$NEXT}}
 
+0.0.4  2021-09-09T23:59:47+02:00
+    - Change file extension to .rakumod
+    - Migrate to zef ecosystem
+    - Update email address
+    - Update copyright year
+
 0.0.3  2019-11-08T23:10:23+01:00
     - change reference of Perl 6 to Raku
 
