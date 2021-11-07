@@ -2,6 +2,10 @@ Revision history for Unix-errno
 
 {{$NEXT}}
 
+0.0.5  2021-11-07T12:32:09+01:00
+    - Remove module statement, we don't need it anymore
+    - Explicitely list NativeCall as a dependency
+
 0.0.4  2021-09-09T23:59:47+02:00
     - Change file extension to .rakumod
     - Migrate to zef ecosystem

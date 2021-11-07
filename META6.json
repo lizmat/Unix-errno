@@ -6,6 +6,7 @@
   "build-depends": [
   ],
   "depends": [
+    "NativeCall"
   ],
   "description": "Provide transparent access to errno",
   "license": "Artistic-2.0",
@@ -22,5 +23,5 @@
   ],
   "test-depends": [
   ],
-  "version": "0.0.4"
+  "version": "0.0.5"
 }

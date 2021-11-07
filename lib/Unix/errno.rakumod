@@ -1,5 +1,3 @@
-use v6.*;
-
 use NativeCall;
 
 my constant @message =
@@ -161,18 +159,16 @@ my class errno {
     method Numeric(--> Int:D) { self!index }
 }
 
-module Unix::errno:ver<0.0.4>:auth<zef:lizmat> {
-    my $proxy := Proxy.new(
-      FETCH => -> $ { UNIT::errno },
-      STORE => -> $, $value { set_errno($value) }
-    );
+my $proxy := Proxy.new(
+  FETCH => -> $ { UNIT::errno },
+  STORE => -> $, $value { set_errno($value) }
+);
 
-    my sub errno() is export is raw { $proxy }
-    my sub set_errno(Int() $value) is export is raw {
-        $last_seen_native = $ERRNO;  # ignore any changes until now
-        $last_set = $value;
-        $proxy
-    }
+my sub errno() is export is raw { $proxy }
+my sub set_errno(Int() $value) is export is raw {
+    $last_seen_native = $ERRNO;  # ignore any changes until now
+    $last_set = $value;
+    $proxy
 }
 
 =begin pod
