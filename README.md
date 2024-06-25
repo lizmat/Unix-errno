@@ -8,13 +8,15 @@ Unix::errno - Provide transparent access to errno
 SYNOPSIS
 ========
 
-    use Unix::errno;  # exports errno, set_errno
+```raku
+use Unix::errno;  # exports errno, set_errno
 
-    set_errno(2);
+set_errno(2);
 
-    say errno;              # No such file or directory (errno = 2)
-    say "failed: {errno}";  # failed: No such file or directory
-    say +errno;             # 2
+say errno;              # No such file or directory (errno = 2)
+say "failed: {errno}";  # failed: No such file or directory
+say +errno;             # 2
+```
 
 DESCRIPTION
 ===========
@@ -33,10 +35,12 @@ Elizabeth Mattijsen <liz@raku.rocks>
 
 Source can be located at: https://github.com/lizmat/Unix-errno . Comments and Pull Requests are welcome.
 
+If you like this module, or what I’m doing more generally, committing to a [small sponsorship](https://github.com/sponsors/lizmat/) would mean a great deal to me!
+
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2018, 2021 Elizabeth Mattijsen
+Copyright 2018, 2021, 2024 Elizabeth Mattijsen
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 

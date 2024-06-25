@@ -2,6 +2,12 @@ Revision history for Unix-errno
 
 {{$NEXT}}
 
+0.0.6  2024-06-25T14:21:15+02:00
+    - Modernize test file extension
+    - Modernize pod
+    - Add sponsor link and button
+    - Update copyright year
+
 0.0.5  2021-11-07T12:32:09+01:00
     - Remove module statement, we don't need it anymore
     - Explicitely list NativeCall as a dependency
