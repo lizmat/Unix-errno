@@ -6,7 +6,7 @@ my constant @message = do {
 
     my @errors = "";
     my int $i;
-    until (my $message = strerror(++$i)).starts-with("Unknown error:") {  # UNCOVERABLE
+    until (my $message = strerror(++$i)).starts-with("Unknown error") {  # UNCOVERABLE
         @errors.push: $message;  # UNCOVERABLE
     }
 
