@@ -2,7 +2,7 @@ use NativeCall;
 
 my constant @message = do {
 
-    sub strerror(int64 $a --> str) is native {*}  # UNCOVERABLE
+    sub strerror(int32 $a --> str) is native {*}  # UNCOVERABLE
 
     my @errors = "";
     my int $i;
