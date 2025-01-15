@@ -1,7 +1,10 @@
 Revision history for Unix-errno
 
 {{$NEXT}}
-    - Use NativeCall at compile time to obtain error strings
+
+0.0.7  2025-01-15T21:48:11+01:00
+    - Use NativeCall at compile time to obtain error strings,
+      rather than having a big constant list of strings
     - Add CI badge for each OS
     - Add sponsor button
     - Update copyright year
@@ -29,9 +32,10 @@ Revision history for Unix-errno
     - make sure that string and value match in .gist
     - removed debug code when trying to set errno
     - changed to exporting a "errno" and "set_errno" subs
-      Turns out you cannot currently export a variable that has a Proxy
-      container rather than a Scalar container.  So any changes after the
-      first FETCH of the C-library variable would not be seen.
+      Turns out you cannot currently export a variable that
+      has a Proxy container rather than a Scalar container.
+      So any changes after the first FETCH of the C-library
+      variable would not be seen.
 
 0.0.1  2018-04-30T11:40:35+02:00
     - Initial version
