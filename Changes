@@ -1,11 +1,15 @@
 Revision history for Unix-errno
 
 {{$NEXT}}
+    - Use NativeCall at compile time to obtain error strings
+    - Add CI badge for each OS
+    - Add sponsor button
+    - Update copyright year
 
 0.0.6  2024-06-25T14:21:15+02:00
     - Modernize test file extension
     - Modernize pod
-    - Add sponsor link and button
+    - Add sponsor link
     - Update copyright year
 
 0.0.5  2021-11-07T12:32:09+01:00
