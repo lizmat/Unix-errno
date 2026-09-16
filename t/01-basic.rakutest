@@ -3,8 +3,8 @@ use Unix::errno;
 
 plan 3;
 
-nok ::("Unix"),             'is UNIX NOT externally accessible?';
-ok MY::<&errno>:exists,     'is errno imported?';
-ok MY::<&set_errno>:exists, 'is set_errno imported?';
+nok ::("Unix"),                'is UNIX NOT externally accessible?';
+ok MY::«&item:<errno>»:exists, 'is errno term imported?';
+ok MY::<&set_errno>:exists,    'is set_errno sub imported?';
 
 # vim: expandtab shiftwidth=4

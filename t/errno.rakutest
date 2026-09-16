@@ -1,7 +1,7 @@
 use Test;
 use Unix::errno;
 
-plan 6;
+plan 8;
 
 is errno.^name, 'errno', 'is errno of the right class';
 is +(set_errno(2)), 2, 'did we get the Int after setting';
@@ -10,5 +10,8 @@ is errno.^name, 'errno', 'is errno still of the right class';
 is +errno,     2,                                       'did we get the Int';
 is errno.Str,  'No such file or directory',             'did we get the Str';
 is errno.gist, 'No such file or directory (errno = 2)', 'did we get the gist';
+
+is +(errno = 42), 42, 'could we set using the Proxy';
+is +errno, 42, 'was it really set';
 
 # vim: expandtab shiftwidth=4

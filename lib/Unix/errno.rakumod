@@ -23,7 +23,7 @@ my int $last_seen_native
 my class errno {
     method !index() {
         my int $errno_now = $ERRNO;
-        $last_set = $last_seen_native = $errno_now
+        $last_set = $last_seen_native = $errno_now  # UNCOVERABLE
           if $last_seen_native != $errno_now;
         $last_set
     }
@@ -44,7 +44,7 @@ my $proxy := Proxy.new(
   STORE => -> $, $value { set_errno($value) }
 );
 
-my sub errno() is export is raw { $proxy }
+my sub term:<errno>() is export is raw { $proxy }
 my sub set_errno(Int() $value) is export is raw {
     # ignore any changes until now
     $last_seen_native = $ERRNO;  # UNCOVERABLE

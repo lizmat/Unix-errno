@@ -1,6 +1,9 @@
 Revision history for Unix-errno
 
 {{$NEXT}}
+    - Modernize META and documentation
+    - Make "errno" a term so it can be easily assigned to
+    - Full coverage testing
 
 0.0.7  2025-01-15T21:48:11+01:00
     - Use NativeCall at compile time to obtain error strings,
