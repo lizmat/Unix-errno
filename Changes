@@ -1,6 +1,8 @@
 Revision history for Unix-errno
 
 {{$NEXT}}
+
+0.0.8  2026-09-16T16:49:08+02:00
     - Modernize META and documentation
     - Make "errno" a term so it can be easily assigned to
     - Full coverage testing

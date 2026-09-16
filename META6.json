@@ -3,6 +3,8 @@
   "authors": [
     "Elizabeth Mattijsen"
   ],
+  "build-depends": [
+  ],
   "depends": [
   ],
   "description": "Provide transparent access to errno",
@@ -12,13 +14,19 @@
     "Unix::errno": "lib/Unix/errno.rakumod"
   },
   "raku": "6.c",
+  "resources": [
+  ],
+  "source-url": "https://codeberg.org/lizmat/Unix-errno.git",
   "support": {
     "bugtracker": "https://codeberg.org/lizmat/Unix-errno/issues",
     "email": "liz@raku.rocks",
     "source": "https://codeberg.org/lizmat/Unix-errno.git"
   },
   "tags": [
-    "UNIX", "errno"
+    "UNIX",
+    "errno"
   ],
-  "version": "0.0.7"
+  "test-depends": [
+  ],
+  "version": "0.0.8"
 }
